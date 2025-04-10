@@ -1,0 +1,92 @@
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Fiszki – Some / Any / No</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #eef;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+        }
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 90%;
+            max-width: 600px;
+        }
+        #question {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+        #answer {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            display: none;
+        }
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #339;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #227;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div id="question">Kliknij "Następna fiszka", aby rozpocząć.</div>
+        <div id="answer"></div>
+    </div>
+    <button onclick="nextFlashcard()">Następna fiszka</button>
+    <button onclick="showAnswer()">Pokaż odpowiedź</button>
+
+    <script>
+        const flashcards = [
+            { q: "Jak rozpoznasz rzeczownik policzalny (countable)?", a: "Można go policzyć – one apple, two apples." },
+            { q: "Jak rozpoznasz rzeczownik niepoliczalny (uncountable)?", a: "Nie można go policzyć, tylko liczba pojedyncza." },
+            { q: "Przykłady rzeczowników policzalnych?", a: "chair, idea, key, book, banana, person" },
+            { q: "Przykłady rzeczowników niepoliczalnych?", a: "money, rice, water, milk, music, information" },
+            { q: "Jak zapytasz 'ile...?' dla policzalnych?", a: "How many...? (How many apples?)" },
+            { q: "Jak zapytasz 'ile...?' dla niepoliczalnych?", a: "How much...? (How much water?)" },
+            { q: "Kiedy używamy SOME?", a: "W twierdzeniach: I have some friends." },
+            { q: "Kiedy używamy ANY?", a: "W pytaniach i przeczeniach: Do you have any water?" },
+            { q: "Co oznacza NO?", a: "Żaden, wcale – np. There is no milk." },
+            { q: "Co oznacza 'too much'?", a: "Za dużo (niepoliczalne): too much sugar." },
+            { q: "Co oznacza 'too many'?", a: "Za dużo (policzalne): too many emails." },
+            { q: "Co oznacza 'enough'?", a: "Wystarczająco – np. We have enough time." },
+            { q: "Jak powiesz: 'Mam trochę pieniędzy'?", a: "I have some money." },
+            { q: "Jak powiesz: 'Nie mam żadnych przyjaciół'?", a: "I don’t have any friends." },
+            { q: "Jak powiesz: 'W lodówce nie ma mleka'?", a: "There is no milk in the fridge." }
+        ];
+
+        let current = -1;
+
+        function nextFlashcard() {
+            current = (current + 1) % flashcards.length;
+            document.getElementById("question").innerText = flashcards[current].q;
+            document.getElementById("answer").style.display = "none";
+            document.getElementById("answer").innerText = flashcards[current].a;
+        }
+
+        function showAnswer() {
+            document.getElementById("answer").style.display = "block";
+        }
+    </script>
+</body>
+</html>
